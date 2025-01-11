@@ -1,0 +1,15 @@
+POST http://localhost:8080/
+Content-Type: application/json
+@burried-bodies/body-small.json
+
+POST http://localhost:8080/
+Content-Type: application/json
+@burried-bodies/malformed-body-small.json
+
+POST http://localhost:8080/
+Content-Type: application/json
+@burried-bodies/body-large.json
+
+POST http://localhost:8080/
+Content-Type: application/json
+@burried-bodies/malformed-body-large.json
