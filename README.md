@@ -1,0 +1,28 @@
+# Progressive HTTP Load Testing with Vegeta
+
+progressive-slam.py is a Python script for HTTP load testing using Vegeta. It automates sending POST requests at increasing rates, collects performance data, and generates visualizations.
+
+## Features
+
+- Customizable Targets: Define HTTP requests, headers, and payloads in a targets.txt file.
+- Metrics Collection: Logs latency and success rates at varying request rates.
+- Results Visualization: Creates visual performance plots using Gnuplot.
+- Organized Outputs: Saves results in timestamped directories.
+
+## Requirements
+
+- Python 3.x
+- [Vegeta](https://github.com/tsenart/vegeta)
+- [Gnuplot](http://www.gnuplot.info/)
+
+## Usage
+1. Prepare the target.txt
+```
+POST http://localhost:8080/
+Content-Type: application/json
+@path/to/body.json
+```
+2. Run the script
+`python3 progressive-slam.py`
+
+3. When the script completes it will call gnuplot and show you the results. The .png will be avaiable in each results file.
