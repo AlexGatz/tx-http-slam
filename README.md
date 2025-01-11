@@ -1,6 +1,6 @@
 # Progressive HTTP Load Testing with Vegeta
 
-progressive-slam.py is a Python script for HTTP load testing using Vegeta. It automates sending POST requests at increasing rates, collects performance data, and generates visualizations.
+progressive-slam.py is a Python script for HTTP load testing using Vegeta. It automates sending http requests at increasing rates, collects performance data, and generates visualizations.
 
 ## Features
 

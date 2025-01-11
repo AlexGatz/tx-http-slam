@@ -67,7 +67,7 @@ print(f"# wrote {latency_path} and {success_path}", file=sys.stderr)
 
 # Visualize with gnuplot (PNG)
 png_output = os.path.join(output_dir, 'result.png')
-plot_cmd = f"gnuplot -e \"DIR='{output_dir}'\" progressive-slam.plt > {png_output}"
+plot_cmd = f'gnuplot -e "set term png size 1280, 800; DIR=\'{output_dir}\'" progressive-slam.plt > {png_output}'
 print(plot_cmd, file=sys.stderr)
 subprocess.run(plot_cmd, shell=True)
 
