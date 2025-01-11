@@ -67,13 +67,13 @@ print(f"# wrote {latency_path} and {success_path}", file=sys.stderr)
 
 # Visualize with gnuplot (PNG)
 png_output = os.path.join(output_dir, 'result.png')
-cmd = f"gnuplot -e \"set term png size 1280, 800\" progressive-slam.plt > {png_output}"
-print(cmd, file=sys.stderr)
-subprocess.run(cmd, shell=True)
+plot_cmd = f"gnuplot -e \"DIR='{output_dir}'\" progressive-slam.plt > {png_output}"
+print(plot_cmd, file=sys.stderr)
+subprocess.run(plot_cmd, shell=True)
 
 # Visualize with gnuplot (default, likely a UI)
-cmd = "gnuplot -persist ramp-requests.plt"
-print(cmd, file=sys.stderr)
-subprocess.run(cmd, shell=True)
+persist_cmd = f"gnuplot -e \"DIR='{output_dir}'\" -persist progressive-slam.plt"
+print(persist_cmd, file=sys.stderr)
+subprocess.run(persist_cmd, shell=True)
 
 print(f"All files are saved in {output_dir}", file=sys.stderr)

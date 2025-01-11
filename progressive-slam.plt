@@ -37,7 +37,7 @@ set ylabel "Success"
 set ytics format "%.2f%%"
 
 # Plot (incl. fraction to percentage conversion)
-plot "results_success.txt" using 1:($2 * 100.0):(0.0) with line lw 3 lc rgb "red" title ""
+plot DIR."/results_success.txt" using 1:($2 * 100.0):(0.0) with line lw 3 lc rgb "red" title ""
 
 
 #
@@ -72,4 +72,4 @@ set format cb "%.9g%%"
 # Plot (incl. fraction to percentage conversion)
 set datafile separator " "
 set pm3d map corners2color c1
-splot "results_latency.txt" u 1:2:($3 * 100.0) with pm3d title ""
+splot DIR."/results_latency.txt" u 1:2:($3 * 100.0) with pm3d title ""

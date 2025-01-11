@@ -16,12 +16,14 @@ progressive-slam.py is a Python script for HTTP load testing using Vegeta. It au
 - [Gnuplot](http://www.gnuplot.info/)
 
 ## Usage
-1. Prepare the target.txt
-```
-POST http://localhost:8080/
-Content-Type: application/json
-@path/to/body.json
-```
+1. Prepare the target.txt (provide 1 target at a time for accurate plots)
+    ```
+    POST http://localhost:8080/
+    Content-Type: application/json
+    @path/to/body.json
+    ```
+    *Note: Because of the way the script is currently setup to run leveraging vegeta's target files which will test many targets at once, the result data is aggregated across all targets provided. I've not reviewed the documentation yet to see if you can generate a report per target, if so that would be ideal.*\
+
 2. Run the script
 `python3 progressive-slam.py`
 
