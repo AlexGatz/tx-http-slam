@@ -13,8 +13,8 @@ The repo is simply a modified version of [this](https://github.com/tsenart/veget
 
 ## Requirements
 
-- Python 3.x
-- [Go Installed](https://go.dev/doc/install)
+- [Python 3](https://www.python.org/downloads/)
+- [Go](https://go.dev/doc/install)
 - [Vegeta](https://github.com/tsenart/vegeta)
 - [Gnuplot](http://www.gnuplot.info/)
 - Vegeta and Go need to be available in your PATH. Review your terminals requirements to set this up. Typically its as simple as added an `export` to the end of your .*rc file (.bashrc for bash, .zshrc for zsh, etc).
