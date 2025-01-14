@@ -14,8 +14,10 @@ The repo is simply a modified version of [this](https://github.com/tsenart/veget
 ## Requirements
 
 - Python 3.x
+- [Go Installed](https://go.dev/doc/install)
 - [Vegeta](https://github.com/tsenart/vegeta)
 - [Gnuplot](http://www.gnuplot.info/)
+- Vegeta and Go need to be available in your PATH. Review your terminals requirements to set this up. Typically its as simple as added an `export` to the end of your .*rc file (.bashrc for bash, .zshrc for zsh, etc).
 
 ## Usage
 1. Prepare the target.txt (provide 1 target at a time for accurate plots)
@@ -30,3 +32,5 @@ The repo is simply a modified version of [this](https://github.com/tsenart/veget
 `python3 progressive-slam.py`
 
 3. When the script completes it will call gnuplot and show you the results. The .png will be avaiable in each results file.
+
+*Note: If the script fails you can edit the report-gen.py to use the output_dir from your previous run, and adjust the `rates` range to match the total results\*.bin files (command: ls \<output dir\> | grep -c 'range.+\\.bin'). Then run `python3 report-gen.py` and this will provide you with a final result.png if you had to end the test early, or if it fails.*

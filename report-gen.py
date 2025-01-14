@@ -1,46 +1,19 @@
-#!/usr/bin/env python3
-
-import json
+# This is really just useful if the test fails for some reason, you have to know which rate the previous test stopped at (count them)
+# and then plugin in output_dir...
 import os
 import subprocess
 import sys
-import time
-from datetime import datetime
-import socket
+import json
 
-if '-h' in sys.argv or '--help' in sys.argv:
-    print('usage:', file=sys.stderr)
-    print('python3 progressive-slam.py (Use a body.json file as well as a targets.txt with this format: POST http://localhost:8080/)', file=sys.stderr)
-    sys.exit(1)
+# Update this line based on file output of progressive-slam.py
+output_dir="results_20250114_094019"
 
-# Check for necessary files
-targets_file = "targets.txt"
-
-if not os.path.exists(targets_file):
-    print(f"Error: {targets_file} is missing.", file=sys.stderr)
-    sys.exit(1)
-
-# Create output directory
-hostname = socket.gethostname()
-timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-output_dir = f"results_{timestamp}"
-os.makedirs(output_dir, exist_ok=True)
-
-# Log-spaced rates (each ca. +25% (+1dB) of the previous, covering 1/sec to 10k/sec)
-rates = [10.0 ** (i / 10.0) for i in range(41)]
+# Count the total results*.bin using: ls <output_dir> | grep -c 'results*.bin' and replace the range(<count>).
+# Log-spaced rates (each ca. +25% (+1dB) of the previous, covering 1/sec to 100k/sec)
+rates = [10.0 ** (i / 10.0) for i in range(30)]
 
 # Log-spaced buckets (each ca. +25% (+1dB) of the previous, covering <1us to >10s)
 buckets = [0] + [1e3 * 10.0 ** (i / 10.0) for i in range(71)]
-
-# Run vegeta attack
-for rate in rates:
-    filename = f"results_{int(1000*rate)}.bin"
-    filepath = os.path.join(output_dir, filename)
-    if not os.path.exists(filepath):
-        cmd = f"vegeta attack -duration 5s -rate {int(1000*rate)}/1000s -targets {targets_file} -output {filepath}"
-        print(cmd, file=sys.stderr)
-        subprocess.run(cmd, shell=True)
-        time.sleep(5)
 
 # Run vegeta report, and extract data for gnuplot
 latency_path = os.path.join(output_dir, 'results_latency.txt')
