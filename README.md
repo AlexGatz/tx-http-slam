@@ -26,13 +26,13 @@ The repo is simply a modified version of [this](https://github.com/tsenart/veget
     Content-Type: application/json
     @path/to/body.json
     ```
-    *Note: Because of the way the script is currently setup to run leveraging vegeta's target files which will test many targets at once, the result data is aggregated across all targets provided. I've not reviewed the documentation yet to see if you can generate a report per target, if so that would be ideal.*\
+    *Note: Because of the way the script is currently setup to run leveraging vegeta's target files which will test many targets at once, the result data is aggregated across all targets provided. Please comment out all targets except one for now for the best results of the report.*\
 
-2. Run the script
+2. Run the script, this will create a new dir labeled as "results_\<year\>\<month\>\<day\>_\<hours\>\<minute\>\<secconds\>" and all results\*.bin files we be written here.\
 `python3 progressive-slam.py`
 
 3. When the script completes it will call gnuplot and show you the results. The .png will be avaiable in each results file.
 
-    *Note: If the script fails you can edit the report-gen.py to use the output_dir from your previous run, and adjust the `rates` range to match the total results\*.bin files (command: ls \<output dir\> | grep -c 'range.+\\.bin'). Then run `python3 report-gen.py` and this will provide you with a final result.png if you had to end the test early, or if it fails.*
+*Note: If the script fails you can edit the report-gen.py to use the output_dir from your previous run, and adjust the `rates` range to match the total results\*.bin files (command: ls \<output dir\> | grep -c 'range.+\\.bin'). Then run `python3 report-gen.py` and this will provide you with a final result.png if you had to end the test early, or if it fails.*
 
-    For one off rate specific vegeta tests you can use: `vegeta attack -duration=<int>s -targets=targets.txt | vegeta report -type=text`
+For one off rate specific vegeta tests you can use: `vegeta attack -duration=<int>s -targets=targets.txt | vegeta report -type=text`
