@@ -35,4 +35,4 @@ The repo is simply a modified version of [this](https://github.com/tsenart/veget
 
 *Note: If the script fails you can edit the report-gen.py to use the output_dir from your previous run, and adjust the `rates` range to match the total results\*.bin files (command: ls \<output dir\> | grep -c 'range.+\\.bin'). Then run `python3 report-gen.py` and this will provide you with a final result.png if you had to end the test early, or if it fails.*
 
-For one off rate specific vegeta tests you can use: `vegeta attack -duration=<int>s -targets=targets.txt | vegeta report -type=text`
+For one off rate specific vegeta tests you can use: `vegeta attack -duration=<int>s -rate=<int>/<int>s -targets=targets.txt | vegeta report -type=text`
